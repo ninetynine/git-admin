@@ -1,7 +1,7 @@
 const github = require('../../../helpers/github');
 
-exports.command = 'invite <user> <repo>';
-exports.describe = 'Invite a user to a repository';
+exports.command = 'add <user> <repo>';
+exports.describe = 'Add a user to a repository';
 
 exports.builder = {
     permissions: {
@@ -16,7 +16,7 @@ exports.handler = ({ user, repo, permissions }) => {
     github.testRepo(repo, true);
 
     github.repo.user
-        .invite({ user, repo, permissions })
-        .then(() => console.warn(`${user} invited to ${repo}`))
-        .catch(() => console.warn(`Unable to invite ${user} to ${repo}`))
+        .add({ user, repo, permissions })
+        .then(() => console.warn(`${user} added to ${repo}`))
+        .catch(() => console.warn(`Unable to add ${user} to ${repo}`))
 }

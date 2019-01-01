@@ -1,6 +1,6 @@
 const user = {};
 
-user.invite = function ({ user, repo, permissions: permission }) {
+user.add = function ({ user, repo, permissions: permission }) {
     const endpoint = `/repos/${repo}/collaborators/${user}`;
     const data = { permission };
 
