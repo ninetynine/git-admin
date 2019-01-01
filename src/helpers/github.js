@@ -15,6 +15,13 @@ github.prototype.testRepo = function (repo, require_org = false) {
         ? /^([\w-_]+\/)?([\w-_]+)$/
         : /^([\w-_]+\/)([\w-_]+)$/;
 
+    if (!repo) {
+        return {
+            org: null,
+            repo: null
+        }
+    }
+
     const matches = repo.match(regexp);
 
     if (!matches) {
