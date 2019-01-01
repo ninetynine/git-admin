@@ -1,4 +1,4 @@
-const github = require('../../helpers/github');
+const github = require('../../../helpers/github');
 
 exports.command = 'invite <user> <repo>';
 exports.describe = 'Invite a user to a repository';
