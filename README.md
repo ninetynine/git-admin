@@ -2,6 +2,19 @@
 
 `git-admin` is a node package that makes it easier to manage GitHub repositories, through commandline.
 
+#### Contents
+
+* [Installation][#installation]
+* [Inital Setup][#initial-setup]
+* [Usage][#usage]
+  * [Repositories][#repositories]
+    * [Create][#create]
+    * [Edit][#edit]
+    * [Delete][#delete]
+    * [Collaborators][#collaborators]
+      * [Add][#add]
+      * [Remove][#remove]
+
 ## Installation
 
 It is possible to install `git-admin` through [NPM][npm] or [Yarn][yarn].
