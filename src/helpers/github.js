@@ -22,7 +22,9 @@ github.prototype.testRepo = function (repo, require_org = false) {
     }
 
     const obj = {
-        org: matches[1].slice(0, -1),
+        org: matches[1]
+            ? matches[1].slice(0, -1)
+            : null,
         repo: matches[2]
     }
 
