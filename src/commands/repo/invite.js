@@ -15,7 +15,7 @@ exports.builder = {
 exports.handler = ({ user, repo, permissions }) => {
     github.testRepo(repo);
 
-    github.repo
+    github.repo.user
         .invite({ user, repo, permissions })
         .then(() => console.warn(`${user} invited to ${repo}`))
         .catch(() => console.warn(`Unable to invite ${user} to ${repo}`))

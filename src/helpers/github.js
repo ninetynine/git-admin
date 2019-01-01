@@ -62,7 +62,8 @@ github.prototype.repo.create = function ({ repo: name, private, org }) {
     })
 }
 
-github.prototype.repo.invite = function ({ user, repo, permissions: permission }) {
+github.prototype.repo.user = {};
+github.prototype.repo.user.invite = function ({ user, repo, permissions: permission }) {
     const endpoint = `/repos/${repo}/collaborators/${user}`;
     const data = { permission };
 
@@ -75,10 +76,18 @@ github.prototype.repo.invite = function ({ user, repo, permissions: permission }
 const instance = new github;
 const bindings = [ github.prototype.repo ];
 
-bindings.forEach(obj => (
-    Object.keys(obj).forEach(key => (
-        obj[key] = obj[key].bind(instance)
-    ))
-))
+const loop = obj => (
+    Object.entries(obj).forEach(([key, fn]) => {
+        if (typeof fn === 'function') {
+            return obj[key] = fn.bind(instance);
+        }
+
+        if (typeof fn === 'object') {
+            loop(fn);
+        }
+    })
+)
+
+bindings.forEach(loop)
 
 module.exports = instance;
