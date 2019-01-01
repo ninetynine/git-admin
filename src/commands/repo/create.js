@@ -5,6 +5,8 @@ exports.describe = 'Create a remote repository';
 
 exports.builder = {
     private: {
+        alias: ['p'],
+        type: 'boolean',
         default: false
     }
 }
