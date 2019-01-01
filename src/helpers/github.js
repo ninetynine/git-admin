@@ -40,7 +40,7 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
                 }
             })
             .then(response => resolve(response.data))
-            .catch(reject);
+            .catch(error => reject(error.response.data));
     })
 }
 
