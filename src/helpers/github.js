@@ -66,6 +66,15 @@ github.prototype.repo.create = function ({ repo: name, private, org }) {
     })
 }
 
+github.prototype.repo.delete = function (repo) {
+    const endpoint = `/repos/${repo}`;
+
+    return this.request({
+        endpoint,
+        method: 'delete'
+    })
+}
+
 github.prototype.repo.user = {};
 github.prototype.repo.user.invite = function ({ user, repo, permissions: permission }) {
     const endpoint = `/repos/${repo}/collaborators/${user}`;
