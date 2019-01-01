@@ -18,7 +18,7 @@ github.prototype.testRepo = function (repo) {
     }
 
     const obj = {
-        org: matches[1],
+        org: matches[1].slice(0, -1),
         repo: matches[2]
     }
 
