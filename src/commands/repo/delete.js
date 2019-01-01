@@ -1,15 +1,13 @@
 const confirm = require('prompt-confirm');
+
+const cli = require('../../helpers/cli');
 const github = require('../../helpers/github');
 
 exports.command = 'delete <repo>';
 exports.describe = 'Delete a remote repository';
 
 exports.builder = {
-    force: {
-        alias: ['f', 'yes', 'y'],
-        type: 'boolean',
-        default: false
-    }
+    force: cli.force
 }
 
 exports.handler = ({ force, repo }) => {
