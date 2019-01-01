@@ -60,13 +60,9 @@ github.prototype.repo.create = function ({ repo: name, private, org }) {
     })
 }
 
-github.prototype.repo.invite = function ({ user, repo, admin }) {
+github.prototype.repo.invite = function ({ user, repo, permissions: permission }) {
     const endpoint = `/repos/${repo}/collaborators/${user}`;
-    const data = { permission: 'push' };
-
-    if (admin) {
-        data.permission = 'admin';
-    }
+    const data = { permission };
 
     return this.request({
         data, endpoint,
