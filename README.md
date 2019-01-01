@@ -4,16 +4,16 @@
 
 #### Contents
 
-* [Installation][#installation]
-* [Inital Setup][#initial-setup]
-* [Usage][#usage]
-  * [Repositories][#repositories]
-    * [Create][#create]
-    * [Edit][#edit]
-    * [Delete][#delete]
-    * [Collaborators][#collaborators]
-      * [Add][#add]
-      * [Remove][#remove]
+* [Installation](#installation)
+* [Inital Setup](#initial-setup)
+* [Usage](#usage)
+  * [Repositories](#repositories)
+    * [Create](#create)
+    * [Edit](#edit)
+    * [Delete](#delete)
+    * [Collaborators](#collaborators)
+      * [Add](#add)
+      * [Remove](#remove)
 
 ## Installation
 
