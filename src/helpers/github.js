@@ -50,50 +50,7 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
     })
 }
 
-github.prototype.repo = {};
-github.prototype.repo.create = function ({ repo: name, private, org }) {
-    let endpoint = `/user/repos`;
-
-    const data = { name, private };
-
-    if (org) {
-        endpoint = `/orgs/${org}/repos`;
-    }
-
-    return this.request({ 
-        data, endpoint,
-        method: 'post'
-    })
-}
-
-github.prototype.repo.delete = function (repo) {
-    const endpoint = `/repos/${repo}`;
-
-    return this.request({
-        endpoint,
-        method: 'delete'
-    })
-}
-
-github.prototype.repo.user = {};
-github.prototype.repo.user.invite = function ({ user, repo, permissions: permission }) {
-    const endpoint = `/repos/${repo}/collaborators/${user}`;
-    const data = { permission };
-
-    return this.request({
-        data, endpoint,
-        method: 'put'
-    })
-}
-
-github.prototype.repo.user.remove = function ({ user, repo }) {
-    const endpoint = `/repos/${repo}/collaborators/${user}`;
-
-    return this.request({
-        endpoint,
-        method: 'delete'
-    })
-}
+github.prototype.repo = require('./github/repo');
 
 const instance = new github;
 const bindings = [ github.prototype.repo ];
