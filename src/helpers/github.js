@@ -36,7 +36,9 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
                 method, data,
                 url: this.makeUri(endpoint),
                 headers: {
-                    authorization: `token ${this._token}`
+                    authorization: `token ${this._token}`,
+                    accept: 'application/json',
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => resolve(response.data))
