@@ -5,7 +5,7 @@
 #### Contents
 
 * [Installation](#installation)
-* [Inital Setup](#initial-setup)
+* [Initial Setup](#initial-setup)
 * [Usage](#usage)
   * [Repositories](#repositories)
     * [Create](#create)
