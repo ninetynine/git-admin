@@ -13,7 +13,7 @@ exports.builder = {
 }
 
 exports.handler = ({ user, repo, permissions }) => {
-    github.testRepo(repo);
+    github.testRepo(repo, true);
 
     github.repo.user
         .invite({ user, repo, permissions })

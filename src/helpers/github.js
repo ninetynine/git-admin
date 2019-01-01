@@ -10,8 +10,12 @@ function github() {
     }
 }
 
-github.prototype.testRepo = function (repo) {
-    const matches = repo.match(/^([\w-_]+\/)?([\w-_]+)$/);
+github.prototype.testRepo = function (repo, require_org = false) {
+    const regexp = !require_org
+        ? /^([\w-_]+\/)?([\w-_]+)$/
+        : /^([\w-_]+\/)([\w-_]+)$/;
+
+    const matches = repo.match(regexp);
 
     if (!matches) {
         throw new Error('Invalid repository given');

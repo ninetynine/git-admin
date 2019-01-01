@@ -4,7 +4,7 @@ exports.command = 'remove <user> <repo>';
 exports.describe = 'Remove a user from a repository';
 
 exports.handler = ({ user, repo }) => {
-    github.testRepo(repo);
+    github.testRepo(repo, true);
 
     github.repo.user
         .remove({ user, repo })
