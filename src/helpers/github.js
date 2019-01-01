@@ -77,7 +77,7 @@ github.prototype.repo.user.invite = function ({ user, repo, permissions: permiss
     })
 }
 
-github.prototype.repo.user.remove = function ({ user, repo, permissions: permission }) {
+github.prototype.repo.user.remove = function ({ user, repo }) {
     const endpoint = `/repos/${repo}/collaborators/${user}`;
 
     return this.request({
