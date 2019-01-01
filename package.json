@@ -1,0 +1,27 @@
+{
+  "name": "git-admin",
+  "version": "0.0.0-prerelease",
+  "description": "A package to help manage git repositories through the commandline",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninetynine/git-admin.git"
+  },
+  "keywords": [
+    "git",
+    "node",
+    "admin",
+    "management",
+    "administration",
+    "commandline"
+  ],
+  "author": "Dexter Marks-Barber <dexter@marks-barber.co.uk>",
+  "license": "LGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/ninetynine/git-admin/issues"
+  },
+  "homepage": "https://github.com/ninetynine/git-admin#readme"
+}
