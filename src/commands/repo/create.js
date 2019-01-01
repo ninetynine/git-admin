@@ -10,14 +10,8 @@ exports.builder = {
 }
 
 exports.handler = ({ repo, private }) => {
-    const matches = github.testRepo(repo);
-
-    if (!matches) {
-        throw new Error('Invalid repository given');
-    }
-
     github.repo
-        .create({ private, repo: matches[2], org: matches[1] })
+        .create({ ...github.testRepo(repo), private })
         .then(() => console.warn('Repository created'))
         .catch(() => console.warn('Unable to create repository'))
 }

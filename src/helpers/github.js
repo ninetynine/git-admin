@@ -8,13 +8,21 @@ function github() {
     if (!this._token) {
         throw new Error('A GitHub personal token is required');
     }
-
-    this.makeUri = this.makeUri.bind(this);
-    this.request = this.request.bind(this);
 }
 
 github.prototype.testRepo = function (repo) {
-    return repo.match(/^([\w-_]+\/)?([\w-_]+)$/);
+    const matches = repo.match(/^([\w-_]+\/)?([\w-_]+)$/);
+
+    if (!matches) {
+        throw new Error('Invalid repository given');
+    }
+
+    const obj = {
+        org: matches[1],
+        repo: matches[2]
+    }
+
+    return obj;
 }
 
 github.prototype.makeUri = function (endpoint) {
