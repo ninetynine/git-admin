@@ -91,7 +91,7 @@ git-admin repo edit user/awesome-new-project --name radical-new-project --descri
 ```
 <small><i>An example of editing a personal repository.</i></small>
 
-If you are an organization repository admin then you can also edi organization repositories. It's worth noting that even if the new name is prefixed with an organization then only the repository name will be used (`[organization/]repository`).
+Depending on if you are an administrator to any organizations will determine if you are able to edit organization repositories. It's worth noting that even if the new name is prefixed with an organization then only the repository name will be used (`[organization/]repository`).
 
 #### Delete
 
