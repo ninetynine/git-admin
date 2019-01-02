@@ -17,7 +17,7 @@ repo.create = function ({ repo: name, private, org }) {
     })
 }
 
-repo.edit = function ({ repo, name, private }) {
+repo.edit = function ({ repo, name, description, homepage, private, 'default-branch': default_branch }) {
     const endpoint = `/repos/${repo}`;
     const data = { name: repo };
 
@@ -25,8 +25,20 @@ repo.edit = function ({ repo, name, private }) {
         data.name = name;
     }
 
+    if (typeof description === 'string') {
+        data.description = description;
+    }
+
+    if (typeof homepage === 'string') {
+        data.homepage = homepage;
+    }
+
     if (typeof private === 'boolean') {
         data.private = private;
+    }
+
+    if (typeof default_branch === 'string') {
+        data.default_branch = default_branch;
     }
 
     data.name = this.testRepo(data.name).repo;

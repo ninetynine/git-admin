@@ -79,12 +79,17 @@ git-admin repo create ninetynine/awesome-new-project
 
 To edit a repository for your account simply run:
 
-Both `--name` (or `-n`) and `--private` (or `-p`) are optional, although one should be passed.
+All options are optional:
+* `--name`, `-n`
+* `--description`, `--desc`, `-d`
+* `--homepage`, `--url`
+* `--private`, `-p`
+* `--default-branch`
 
 ```
-git-admin repo edit user/awesome-new-project --name radical-new-project --private true
+git-admin repo edit user/awesome-new-project --name radical-new-project --description cool description --homepage https://github.com --private --default-branch master
 ```
-<small><i>An example of renaming, and making private, a personal public repository.</i></small>
+<small><i>An example of editing a personal repository.</i></small>
 
 If you are an organization repository admin then you can also edi organization repositories. It's worth noting that even if the new name is prefixed with an organization then only the repository name will be used (`[organization/]repository`).
 

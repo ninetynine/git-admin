@@ -12,18 +12,31 @@ exports.builder = {
         alias: ['n'],
         type: 'string'
     },
+    description: {
+        alias: ['desc', 'd'],
+        type: 'boolean'
+    },
+    homepage: {
+        alias: ['url'],
+        type: 'string'
+    },
     private: {
         alias: ['p'],
         type: 'boolean'
+    },
+    'default-branch': {
+        type: 'string'
     }
 }
 
-exports.handler = ({ force, repo, name, private }) => {
+exports.handler = argv => {
+    const { repo, force } = argv;
+
     github.testRepo(repo, true);
 
     const action = () => (
         github.repo
-            .edit({ repo, name, private })
+            .edit(argv)
             .then(() => console.warn('Repository edited'))
             .catch(() => console.warn('Unable to edit repository'))
     )
