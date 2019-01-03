@@ -15,6 +15,8 @@
     * [Collaborators](#collaborators)
       * [Add](#add)
       * [Remove](#remove)
+  * [Modules](#modules)
+      * [Basic Command](#basic-command)
 
 ## Installation
 
@@ -200,7 +202,35 @@ git-admin repo user remove userB user/repository
 
 If you are an organization repository admin you can also do this for organization repositories.
 
+### Modules
+
+Modules allow `git-admin` to be extended easily. `git-admin` looks for a directory in your home directory:
+
+```
+$HOME/.git-admin/modules
+```
+<small><i>Node's `os.homedir` is used for finding your home directory.</i></small>
+
+Within the modules directory `git-admin` checks for any directories and attempts to require them, because of this you are able to create whatever commands with whatever complexity you want. Check out Yarg's [command module][cm] documentation.
+
+Modules should follow a naming convention as restriction may need to be added in the future.
+
+> git-admin-module-[module-name]
+
+Just make sure that your `package.json` [main][npm-main] is pointing to the entrypoint for your command(s).
+
+#### Basic Command:
+```js
+exports.command = 'example';
+exports.desc = 'Example module command';
+
+exports.handler = () => console.warn('hello, world');
+```
+<small><i>An example of a barebones command.</i></small>
+
 [npm]: https://npmjs.com
+[npm-main]: https://docs.npmjs.com/files/package.json#main
 [yarn]: https://yarnpkg.com
 [pt]: https://github.com/settings/tokens
 [pt-info]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+[cm]: https://github.com/yargs/yargs/blob/master/docs/advanced.md#providing-a-command-module

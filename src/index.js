@@ -1,11 +1,6 @@
 #!/usr/bin/env node
-require('./bootstrap');
-
-const yargs = require('yargs');
+const { yargs } = require('./bootstrap');
 
 yargs
-    .scriptName('git-admin')
-    .commandDir('commands')
-    .demandCommand()
     .help()
-    .argv
+    .argv;
