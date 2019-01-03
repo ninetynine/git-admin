@@ -1,13 +1,13 @@
 const confirm = require('prompt-confirm');
 
 const github = require('../../helpers/github');
-const { force, write } = require('../../helpers/cli');
+const { force, private, write } = require('../../helpers/cli');
 
 exports.command = 'edit <repo>';
 exports.describe = 'Edit a remote repository';
 
 exports.builder = {
-    force,
+    force, private,
     name: {
         alias: ['n'],
         type: 'string'
@@ -19,10 +19,6 @@ exports.builder = {
     homepage: {
         alias: ['url'],
         type: 'string'
-    },
-    private: {
-        alias: ['p'],
-        type: 'boolean'
     },
     'default-branch': {
         type: 'string'

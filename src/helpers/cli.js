@@ -4,6 +4,18 @@ exports.force = {
     default: false
 }
 
+exports.page = {
+    alias: ['p'],
+    type: 'number',
+    default: 1
+}
+
+exports.private = {
+    alias: ['p'],
+    type: 'boolean',
+    default: false
+}
+
 exports.write = function() {
     Array
         .from(arguments)

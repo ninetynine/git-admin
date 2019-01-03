@@ -1,10 +1,11 @@
 const github = require('../../helpers/github');
-const { write } = require('../../helpers/cli');
+const { page, write } = require('../../helpers/cli');
 
 exports.command = 'list';
 exports.describe = 'List remote repositories';
 
 exports.builder = {
+    page,
     organization: {
         alias: ['org', 'o'],
         type: 'string'
@@ -37,11 +38,6 @@ exports.builder = {
         alias: ['d'],
         choices: ['asc', 'desc'],
         type: 'string'
-    },
-    page: {
-        alias: ['p'],
-        type: 'number',
-        default: 1
     }
 }
 
