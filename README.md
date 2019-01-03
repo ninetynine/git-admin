@@ -57,10 +57,44 @@ When editing or deleting a repository a confirmation prompt will appear before t
 
 To list repositories for your account simply run:
 
+All options are optional:
+* `--organization`, `--org`, `-o`
+* `--user`, `-u`
+* `--page`, `-p`
+
+Organization options:
+* `--type`, `-t`
+
+User options:
+* `--sort`, `-s`
+* `--direction`, `-d`
+
+<small><i>Organization options included</i></small>
+
+Personal options:
+* `--visibility`, `-v`
+* `--affiliation`, `-a`
+
+<small><i>User options included</i></small>
+
 ```
 git-admin repo list
 ```
-<small><i>An example of listing personal repository.</i></small>
+<small><i>An example of listing personal repositories.</i></small>
+
+If you want to get all the repos that are visible to you for another user run:
+
+```
+git-admin repo list --user user
+```
+<small><i>An example of listing another user's repositories.</i></small>
+
+If you want to get all the repos that are visible to you for an organization run:
+
+```
+git-admin repo list --org organization
+```
+<small><i>An example of listing an organization's repositories.</i></small>
 
 #### Create
 
