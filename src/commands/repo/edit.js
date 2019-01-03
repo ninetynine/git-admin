@@ -14,7 +14,7 @@ exports.builder = {
     },
     description: {
         alias: ['desc', 'd'],
-        type: 'boolean'
+        type: 'string'
     },
     homepage: {
         alias: ['url'],
