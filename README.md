@@ -57,26 +57,6 @@ When editing or deleting a repository a confirmation prompt will appear before t
 
 To list repositories for your account simply run:
 
-All options are optional:
-* `--organization`, `--org`, `-o`
-* `--user`, `-u`
-* `--page`, `-p`
-
-Organization options:
-* `--type`, `-t`
-
-User options:
-* `--sort`, `-s`
-* `--direction`, `-d`
-
-<small><i>Organization options included</i></small>
-
-Personal options:
-* `--visibility`, `-v`
-* `--affiliation`, `-a`
-
-<small><i>User options included</i></small>
-
 ```
 git-admin repo list
 ```
@@ -96,6 +76,39 @@ git-admin repo list --org organization
 ```
 <small><i>An example of listing an organization's repositories.</i></small>
 
+##### Options
+
+All options are optional.
+
+* `--organization`, `--org`, `-o`
+  * <small>String</small>
+* `--user`, `-u`
+  * <small>String</small>
+* `--page`, `-p`
+  * <small>Number (default `1`)</small>
+
+###### Organization Options
+* `--type`, `-t`
+  * <small>`all` (default), `public`, `private`, `fork`, `sources`, `member`</small>
+
+###### User Options
+* `--type`, `-t`
+  * <small>`all` (default), `owner`, `member`</small>
+* `--sort`, `-s`
+  * <small>`created`, `updated`, `pushed`, `full_name` (default)</small>
+* `--direction`, `-d`
+  * <small>`asc`, `desc`</small>
+
+###### Personal options
+* `--type`, `-t`
+  * <small>`all` (default), `owner`, `public`, `private`, `member`</small>
+* `--visibility`, `-v`
+  * <small>`all` (default), `public`, `private`</small>
+* `--affiliation`, `-a`
+  * <small>One or combined of: `owner`, `collaborator`, `organization_member` (default all combined)</small>
+
+<small><i>User options included</i></small>
+
 #### Create
 
 To create a repository for your account simply run:
@@ -105,37 +118,45 @@ git-admin repo create awesome-new-project
 ```
 <small><i>An example of creating a personal public repository.</i></small>
 
-If you are a premium GitHub account holder you are able to create private repositories by adding the `--private` (or `-p`) option.
-
-```
-git-admin repo create awesome-new-project --private
-```
-<small><i>An example of creating a personal private repository.</i></small>
-
 Depending on if you are an administrator to any organizations will determine if you are able to create organization repositories.
 
 ```
-git-admin repo create ninetynine/awesome-new-project
+git-admin repo create organization/awesome-new-project
 ```
 <small><i>An example of creating a public organization repository. The private option can also be applied here.</i></small>
+
+##### Options
+
+All options are optional.
+
+* `--private`, `-p`
+  * <small>Boolean</small>
 
 #### Edit
 
 To edit a repository for your account simply run:
 
-All options are optional:
-* `--name`, `-n`
-* `--description`, `--desc`, `-d`
-* `--homepage`, `--url`
-* `--private`, `-p`
-* `--default-branch`
-
 ```
-git-admin repo edit user/awesome-new-project --name radical-new-project --description cool description --homepage https://github.com --private --default-branch master
+git-admin repo edit user/awesome-new-project
 ```
 <small><i>An example of editing a personal repository.</i></small>
 
 Depending on if you are an administrator to any organizations will determine if you are able to edit organization repositories. It's worth noting that even if the new name is prefixed with an organization then only the repository name will be used (`[organization/]repository`).
+
+##### Options
+
+All options are optional.
+
+* `--name`, `-n`
+  * <small>String</small>
+* `--description`, `--desc`, `-d`
+  * <small>String</small>
+* `--homepage`, `--url`
+  * <small>String</small>
+* `--private`, `-p`
+  * <small>Boolean</small>
+* `--default-branch`
+  * <small>String</small>
 
 #### Delete
 
@@ -159,9 +180,14 @@ git-admin repo user add userB user/repository
 ```
 <small><i>An example of adding a collaborator to a personal repository.</i></small>
 
-By default the user will be given `push` access. You can specify `---permissions` (or `--perms`, `--perm`, or `-p`) with either: `pull` (read-only), `push` (normal access), `admin` (admin access).
-
 If you are an organization repository admin you can also do this for organization repositories.
+
+###### Options
+
+All options are optional.
+
+* `--permissions`, `--perms`, `--perm`, `-p`
+  * <small>`pull`, `push` (default), `admin`</small>
 
 ##### Remove
 
