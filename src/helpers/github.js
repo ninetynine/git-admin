@@ -1,4 +1,6 @@
 const axios = require('axios');
+const parse = require('parse-link-header');
+
 const config = require('./config');
 
 function github() {
@@ -54,7 +56,12 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => resolve(response.data))
+            .then(response => {
+                const { data } = response;
+                const pagination = parse(response.headers.link);
+
+                resolve({ data, pagination });
+            })
             .catch(error => reject(error.response.data));
     })
 }
