@@ -1,5 +1,5 @@
 const github = require('../../helpers/github');
-const { write } = require('../../../helpers/cli');
+const { write } = require('../../helpers/cli');
 
 exports.command = 'create <repo>';
 exports.describe = 'Create a remote repository';
