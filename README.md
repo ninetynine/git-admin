@@ -14,6 +14,7 @@
     * [Delete](#delete)
     * [Collaborators](#collaborators)
       * [List](#list-1)
+        * [Inactive](#list-inactive)
       * [Add](#add)
       * [Remove](#remove)
   * [Modules](#modules)
@@ -188,6 +189,29 @@ git-admin repo user list user/repository
 * `--page`, `-p`
   * <small>Number (default `1`)</small>
 
+
+##### List Inactive
+
+To find inactive users for a repository simply run:
+
+```
+git-admin repo user inactive user/repository
+```
+<small><i>An example of finding all inactive collaborators, who haven't commited in a month, to a repository.</i></small>
+
+If you have admin permissions on a repository you can also use `--prune` to automatically remove any users found:
+```
+git-admin repo user inactive user/repository --prune
+```
+<small><i>An example of finding all inactive collaborators, who haven't commited in a month, to a repository and removing them automatically.</i></small>
+
+###### Options
+
+* `--until`, `--from`, `-u`
+  * <small>Date (default previous month from current date), expected format: `MM-DD-YYYY`. Check out [dayjs][dayjs] for more parsing information</small>
+* `--prune`, `-p`
+  * <small>Boolean</small>
+
 ##### Add
 
 To add a collaborator to your repository simply run:
@@ -251,3 +275,4 @@ exports.handler = () => console.warn('hello, world');
 [pt]: https://github.com/settings/tokens
 [pt-info]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
 [cm]: https://github.com/yargs/yargs/blob/master/docs/advanced.md#providing-a-command-module
+[dayjs]: https://github.com/iamkun/dayjs/blob/master/docs/en/API-reference.md#constructor-dayjsexisting-string--number--date--dayjs
