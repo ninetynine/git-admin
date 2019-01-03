@@ -25,7 +25,7 @@ exports.builder = {
     },
     type: {
         alias: ['t'],
-        choices: ['all', 'owner', 'public', 'private', 'member'],
+        choices: ['all', 'owner', 'public', 'private', 'member', 'forks', 'sources'],
         type: 'string'
     },
     sort: {
