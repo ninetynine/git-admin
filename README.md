@@ -13,6 +13,7 @@
     * [Edit](#edit)
     * [Delete](#delete)
     * [Collaborators](#collaborators)
+      * [List](#list-1)
       * [Add](#add)
       * [Remove](#remove)
   * [Modules](#modules)
@@ -173,6 +174,20 @@ Similarly if you are an organization repository admin then you can also delete o
 
 #### Collaborators
 
+##### List
+
+To list collaborators for a repository simply run:
+
+```
+git-admin repo user list user/repository
+```
+<small><i>An example of listing collaborators for a repository.</i></small>
+
+###### Options
+
+* `--page`, `-p`
+  * <small>Number (default `1`)</small>
+
 ##### Add
 
 To add a collaborator to your repository simply run:
@@ -221,6 +236,8 @@ Just make sure that your `package.json` [main][npm-main] is pointing to the entr
 
 #### Basic Command:
 ```js
+// $HOME/.git-admin/modules/git-admin-module-example/index.js
+
 exports.command = 'example';
 exports.desc = 'Example module command';
 

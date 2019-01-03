@@ -19,4 +19,16 @@ user.remove = function ({ user, repo }) {
     })
 }
 
+user.list = function ({ repo, page }) {
+    let endpoint = `/repos/${repo}/collaborators`;
+
+    if (page) {
+        endpoint += `?page=${page}`;
+    }
+
+    return this.request({
+        endpoint
+    })
+}
+
 module.exports = user;
