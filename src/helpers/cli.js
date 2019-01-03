@@ -3,3 +3,12 @@ exports.force = {
     type: 'boolean',
     default: false
 }
+
+exports.write = function() {
+    Array
+        .from(arguments)
+        .forEach(arg => {
+            process.stdout.write(arg);
+            process.stdout.write('\n\r');
+        })
+}

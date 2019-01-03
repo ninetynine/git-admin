@@ -1,13 +1,13 @@
 const confirm = require('prompt-confirm');
 
-const cli = require('../../helpers/cli');
 const github = require('../../helpers/github');
+const { force, write } = require('../../helpers/cli');
 
 exports.command = 'delete <repo>';
 exports.describe = 'Delete a remote repository';
 
 exports.builder = {
-    force: cli.force
+    force
 }
 
 exports.handler = ({ force, repo }) => {
@@ -16,8 +16,8 @@ exports.handler = ({ force, repo }) => {
     const action = () => (
         github.repo
             .delete(repo)
-            .then(() => console.warn('Repository deleted'))
-            .catch(() => console.warn('Unable to delete repository'))
+            .then(() => write('Repository deleted'))
+            .catch(() => write('Unable to delete repository'))
     )
 
     if (force) {

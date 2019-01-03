@@ -1,13 +1,13 @@
 const confirm = require('prompt-confirm');
 
-const cli = require('../../helpers/cli');
 const github = require('../../helpers/github');
+const { force, write } = require('../../helpers/cli');
 
 exports.command = 'edit <repo>';
 exports.describe = 'Edit a remote repository';
 
 exports.builder = {
-    force: cli.force,
+    force,
     name: {
         alias: ['n'],
         type: 'string'
@@ -37,8 +37,8 @@ exports.handler = argv => {
     const action = () => (
         github.repo
             .edit(argv)
-            .then(() => console.warn('Repository edited'))
-            .catch(() => console.warn('Unable to edit repository'))
+            .then(() => write('Repository edited'))
+            .catch(() => write('Unable to edit repository'))
     )
 
     if (force) {

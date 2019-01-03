@@ -1,4 +1,5 @@
 const github = require('../../helpers/github');
+const { write } = require('../../../helpers/cli');
 
 exports.command = 'create <repo>';
 exports.describe = 'Create a remote repository';
@@ -14,6 +15,6 @@ exports.builder = {
 exports.handler = ({ repo, private }) => {
     github.repo
         .create({ ...github.testRepo(repo), private })
-        .then(() => console.warn('Repository created'))
-        .catch(() => console.warn('Unable to create repository'))
+        .then(() => write('Repository created'))
+        .catch(() => write('Unable to create repository'))
 }

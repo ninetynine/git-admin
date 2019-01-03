@@ -1,4 +1,5 @@
 const github = require('../../../helpers/github');
+const { write } = require('../../../helpers/cli');
 
 exports.command = 'add <user> <repo>';
 exports.describe = 'Add a user to a repository';
@@ -17,6 +18,6 @@ exports.handler = ({ user, repo, permissions }) => {
 
     github.repo.user
         .add({ user, repo, permissions })
-        .then(() => console.warn(`${user} added to ${repo}`))
-        .catch(() => console.warn(`Unable to add ${user} to ${repo}`))
+        .then(() => write(`${user} added to ${repo}`))
+        .catch(() => write(`Unable to add ${user} to ${repo}`))
 }
