@@ -1,5 +1,5 @@
 const github = require('../../helpers/github');
-const { page, write } = require('../../helpers/cli');
+const { page, maxPage, write } = require('../../helpers/cli');
 
 exports.command = 'list';
 exports.describe = 'List remote repositories';
@@ -51,11 +51,7 @@ exports.handler = argv => {
     github.repo
         .list(argv)
         .then(({ data, pagination }) => {
-            const max_page = 
-                pagination && pagination.last
-                    ? `of ${pagination.last.page}` 
-                    : `of ${page}`;
-
+            const max_page = maxPage({ page, pagination });
             const pages = () => write(`Page ${page} ${max_page}`);
 
             pages();

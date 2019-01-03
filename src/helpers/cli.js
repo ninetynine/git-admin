@@ -16,6 +16,12 @@ exports.private = {
     default: false
 }
 
+exports.maxPage = function({ page, pagination }) {
+    return pagination && pagination.last
+        ? `of ${pagination.last.page}` 
+        : `of ${page}`;
+}
+
 exports.write = function() {
     Array
         .from(arguments)
