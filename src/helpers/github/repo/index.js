@@ -2,6 +2,51 @@ const repo = {};
 
 repo.user = require('./user');
 
+repo.list = function ({ user, organization, visibility, affiliation, type, sort, direction, page }) {
+    let endpoint = '/user/repos';
+
+    const query = [];
+    const has_query = visibility || affiliation || type || sort || direction || page;
+
+    if (organization) {
+        endpoint = `/orgs/${organization}/repos`;
+    } else if (user) {
+        endpoint = `/users/${user}/repos`;
+    }
+
+    if (visibility) {
+        query.push(`visibility=${visibility}`);
+    }
+
+    if (affiliation) {
+        query.push(`affiliation=${affiliation}`);
+    }
+
+    if (type) {
+        query.push(`type=${type}`);
+    }
+
+    if (sort) {
+        query.push(`sort=${sort}`);
+    }
+
+    if (direction) {
+        query.push(`direction=${direction}`);
+    }
+
+    if (page) {
+        query.push(`page=${page}`);
+    }
+
+    if (has_query) {
+        endpoint += '?' + query.join('&');
+    }
+
+    return this.request({
+        endpoint
+    })
+}
+
 repo.create = function ({ repo: name, private, org }) {
     let endpoint = `/user/repos`;
 

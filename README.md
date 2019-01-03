@@ -8,6 +8,7 @@
 * [Initial Setup](#initial-setup)
 * [Usage](#usage)
   * [Repositories](#repositories)
+    * [List](#list)
     * [Create](#create)
     * [Edit](#edit)
     * [Delete](#delete)
@@ -51,6 +52,15 @@ git-admin config token <personal-access-token>
 The majority of the following commands require `repo` access unless specificed.
 
 When editing or deleting a repository a confirmation prompt will appear before taking any action. Although not recommended the prompt can be skipped by adding `--force` (or `-f`, `--yes`, or `-y`).
+
+#### List
+
+To list repositories for your account simply run:
+
+```
+git-admin repo list
+```
+<small><i>An example of listing personal repository.</i></small>
 
 #### Create
 
