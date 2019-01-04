@@ -1,6 +1,27 @@
-# Git Admin
+<h1 align="center">
+  <br />
+  <br />
+  Git Admin
+  <br />
+  <br />
+  <br />
+</h1>
 
-`git-admin` is a node package that makes it easier to manage GitHub repositories, through commandline.
+<h5 align="center"><code>git-admin</code> is a node package that makes it easier to manage GitHub repositories, through commandline.</h5>
+<p align="center">
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="https://badgen.net/npm/v/git-admin" />
+  </a>
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="https://badgen.net/npm/dt/git-admin" />
+  </a>
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/git-admin@latest/" />
+  </a>
+</p>
+
+<br />
+<br />
 
 #### Contents
 
@@ -25,14 +46,16 @@
 It is possible to install `git-admin` through [NPM][npm] or [Yarn][yarn].
 
 ```
+# An example of installing using NPM
 npm i -g git-admin
 ```
-<small><i>An example of installing using NPM.</i></small>
 
 ```
+# An example of installing using Yarn
 yarn global add git-admin
 ```
-<small><i>An example of installing using Yarn.</i></small>
+
+<hr />
 
 ## Initial Setup
 
@@ -45,9 +68,11 @@ As `git-admin`'s functionality is currently based around repositories you will n
 After creating a personal access token you will be presented with a code. Run the following command to store it:
 
 ```
+# An example of setting the personal access token
 git-admin config token <personal-access-token>
 ```
-<small><i>An example of setting the personal access token.</i></small>
+
+<hr />
 
 ## Usage
 
@@ -62,23 +87,23 @@ When editing or deleting a repository a confirmation prompt will appear before t
 To list repositories for your account simply run:
 
 ```
+# An example of listing personal repositories
 git-admin repo list
 ```
-<small><i>An example of listing personal repositories.</i></small>
 
 If you want to get all the repos that are visible to you for another user run:
 
 ```
+# An example of listing another user's repositories
 git-admin repo list --user user
 ```
-<small><i>An example of listing another user's repositories.</i></small>
 
 If you want to get all the repos that are visible to you for an organization run:
 
 ```
+# An example of listing an organization's repositories
 git-admin repo list --org organization
 ```
-<small><i>An example of listing an organization's repositories.</i></small>
 
 ##### Options
 
@@ -113,21 +138,23 @@ All options are optional.
 
 <small><i>User options included</i></small>
 
+<hr />
+
 #### Create
 
 To create a repository for your account simply run:
 
 ```
+# An example of creating a personal public repository
 git-admin repo create awesome-new-project
 ```
-<small><i>An example of creating a personal public repository.</i></small>
 
 Depending on if you are an administrator to any organizations will determine if you are able to create organization repositories.
 
 ```
+# An example of creating a public organization repository. The private option can also be applied here
 git-admin repo create organization/awesome-new-project
 ```
-<small><i>An example of creating a public organization repository. The private option can also be applied here.</i></small>
 
 ##### Options
 
@@ -136,14 +163,16 @@ All options are optional.
 * `--private`, `-p`
   * <small>Boolean</small>
 
+<hr />
+
 #### Edit
 
 To edit a repository for your account simply run:
 
 ```
+# An example of editing a personal repository
 git-admin repo edit user/awesome-new-project
 ```
-<small><i>An example of editing a personal repository.</i></small>
 
 Depending on if you are an administrator to any organizations will determine if you are able to edit organization repositories. It's worth noting that even if the new name is prefixed with an organization then only the repository name will be used (`[organization/]repository`).
 
@@ -162,16 +191,20 @@ All options are optional.
 * `--default-branch`
   * <small>String</small>
 
+<hr />
+
 #### Delete
 
 Deleting repositories require the `delete_repo` scope. To delete a repository for your account simply run:
 
 ```
+# An example of deleting a personal repository
 git-admin repo delete user/repository
 ```
-<small><i>An example of deleting a personal repository.</i></small>
 
 Similarly if you are an organization repository admin then you can also delete organization repositories.
+
+<hr />
 
 #### Collaborators
 
@@ -180,30 +213,32 @@ Similarly if you are an organization repository admin then you can also delete o
 To list collaborators for a repository simply run:
 
 ```
+# An example of listing collaborators for a repository
 git-admin repo user list user/repository
 ```
-<small><i>An example of listing collaborators for a repository.</i></small>
 
 ###### Options
 
 * `--page`, `-p`
   * <small>Number (default `1`)</small>
 
+<hr />
 
 ##### List Inactive
 
 To find inactive users for a repository simply run:
 
 ```
+# An example of finding all inactive collaborators, who haven't commited in a month, to a repository
 git-admin repo user inactive user/repository
 ```
-<small><i>An example of finding all inactive collaborators, who haven't commited in a month, to a repository.</i></small>
 
 If you have admin permissions on a repository you can also use `--prune` to automatically remove any users found:
+
 ```
+# An example of finding all inactive collaborators, who haven't commited in a month, to a repository and removing them automatically
 git-admin repo user inactive user/repository --prune
 ```
-<small><i>An example of finding all inactive collaborators, who haven't commited in a month, to a repository and removing them automatically.</i></small>
 
 ###### Options
 
@@ -214,14 +249,16 @@ git-admin repo user inactive user/repository --prune
 * `--prune`, `-p`
   * <small>Boolean</small>
 
+<hr />
+
 ##### Add
 
 To add a collaborator to your repository simply run:
 
 ```
+# An example of adding a collaborator to a personal repository
 git-admin repo user add userB user/repository
 ```
-<small><i>An example of adding a collaborator to a personal repository.</i></small>
 
 If you are an organization repository admin you can also do this for organization repositories.
 
@@ -232,25 +269,29 @@ All options are optional.
 * `--permissions`, `--perms`, `--perm`, `-p`
   * <small>`pull`, `push` (default), `admin`</small>
 
+<hr />
+
 ##### Remove
 
 To remove a collaborator to your repository simply run:
 
 ```
+# An example of removing a collaborator to a personal repository
 git-admin repo user remove userB user/repository
 ```
-<small><i>An example of removing a collaborator to a personal repository.</i></small>
 
 If you are an organization repository admin you can also do this for organization repositories.
+
+<hr />
 
 ### Modules
 
 Modules allow `git-admin` to be extended easily. `git-admin` looks for a directory in your home directory:
 
 ```
+# Node's `os.homedir` is used for finding your home directory
 $HOME/.git-admin/modules
 ```
-<small><i>Node's `os.homedir` is used for finding your home directory.</i></small>
 
 Within the modules directory `git-admin` checks for any directories and attempts to require them, because of this you are able to create whatever commands with whatever complexity you want. Check out Yarg's [command module][cm] documentation.
 
@@ -262,6 +303,7 @@ Just make sure that your `package.json` [main][npm-main] is pointing to the entr
 
 #### Basic Command:
 ```js
+// An example of a barebones command
 // $HOME/.git-admin/modules/git-admin-module-example/index.js
 
 exports.command = 'example';
@@ -269,7 +311,6 @@ exports.desc = 'Example module command';
 
 exports.handler = () => console.warn('hello, world');
 ```
-<small><i>An example of a barebones command.</i></small>
 
 [npm]: https://npmjs.com
 [npm-main]: https://docs.npmjs.com/files/package.json#main
