@@ -1,6 +1,27 @@
-# Git Admin
+<h1 align="center">
+  <br />
+  <br />
+  Git Admin
+  <br />
+  <br />
+  <br />
+</h1>
 
-`git-admin` is a node package that makes it easier to manage GitHub repositories, through commandline.
+<h5 align="center"><code>git-admin</code> is a node package that makes it easier to manage GitHub repositories, through commandline.</h5>
+<p align="center">
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="https://badgen.net/npm/v/git-admin" />
+  </a>
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="https://badgen.net/npm/dt/git-admin" />
+  </a>
+  <a href="https://www.npmjs.com/package/git-admin">
+    <img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/git-admin@latest/" />
+  </a>
+</p>
+
+<br />
+<br />
 
 #### Contents
 
