@@ -143,4 +143,30 @@ repo.commits = function ({ repo, sha, path, author, since, until, page }) {
     })
 }
 
+repo.protect = function ({ repo, branch, required_status_checks, required_pull_request_reviews, enforce_admins, restrictions }) {
+    const endpoint = `/repos/${repo}/branches/${branch}/protection`;
+    const data = {};
+
+    if (required_status_checks !== undefined) {
+        data.required_status_checks = required_status_checks;
+    }
+
+    if (required_pull_request_reviews !== undefined) {
+        data.required_pull_request_reviews = required_pull_request_reviews;
+    }
+
+    if (enforce_admins !== undefined) {
+        data.enforce_admins = enforce_admins;
+    }
+
+    if (restrictions !== undefined) {
+        data.restrictions = restrictions;
+    }
+
+    this.request({
+        data, endpoint,
+        method: 'PUT'
+    })
+}
+
 module.exports = repo;
