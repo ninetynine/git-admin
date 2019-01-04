@@ -207,6 +207,8 @@ git-admin repo user inactive user/repository --prune
 
 ###### Options
 
+* `--sha`, `--branch`, `-b`
+  * <small>String (default `master`)</small>
 * `--until`, `--from`, `-u`
   * <small>Date (default previous month from current date), expected format: `MM-DD-YYYY`. Check out [dayjs][dayjs] for more parsing information</small>
 * `--prune`, `-p`

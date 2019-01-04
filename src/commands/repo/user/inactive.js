@@ -10,6 +10,10 @@ exports.command = 'inactive <repo>';
 exports.describe = 'List all inactive users on a repository';
 
 exports.builder = {
+    sha: {
+        alias: ['branch', 'b'],
+        type: 'string'
+    },
 	until: {
 		alias: ['from', 'u'],
 		type: 'string',
@@ -25,7 +29,7 @@ exports.builder = {
 	}
 }
 
-exports.handler = ({ repo, until, prune, page }) => {
+exports.handler = ({ repo, sha, until, prune }) => {
     github.testRepo(repo, true);
 
     let users_page = 1,
@@ -74,7 +78,7 @@ exports.handler = ({ repo, until, prune, page }) => {
             if (pagination && pagination.last) {
                 write(`Getting commits, scanning page ${++commits_page} of ${pagination.last.page}`);
 
-                const output = await github.repo.commits({ repo, until, page: commits_page });
+                const output = await github.repo.commits({ repo, sha, until, page: commits_page });
                 output.data.forEach(commit => active_users.push(commit.author.login));
 
                 return getActiveUsers(output);
@@ -88,7 +92,7 @@ exports.handler = ({ repo, until, prune, page }) => {
     }
 
     github.repo
-        .commits({ repo, until })
+        .commits({ repo, sha, until })
         .then(async data => {
             await warmup();
             
