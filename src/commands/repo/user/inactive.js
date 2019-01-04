@@ -41,9 +41,7 @@ exports.handler = ({ repo, until, prune, page }) => {
             write(`Getting contributors, scanning page ${++users_page} of ${pagination.last.page}`);
 
             const output = await github.repo.user.list({ repo, page: users_page });
-
             output.data.forEach(user => users.push(user.login));
-            users = array.unique(users);
 
             return getUsers(output);
         }
@@ -77,9 +75,7 @@ exports.handler = ({ repo, until, prune, page }) => {
                 write(`Getting commits, scanning page ${++commits_page} of ${pagination.last.page}`);
 
                 const output = await github.repo.commits({ repo, until, page: commits_page });
-
                 output.data.forEach(commit => active_users.push(commit.author.login));
-                active_users = array.unique(active_users);
 
                 return getActiveUsers(output);
             }
