@@ -66,5 +66,5 @@ exports.handler = argv => {
             write();
             pages();
         })
-        .catch(error => write(`Unable to list repositories ${not_self}`, JSON.stringify(error)))
+        .catch(() => write(`Unable to list repositories ${not_self}`))
 }

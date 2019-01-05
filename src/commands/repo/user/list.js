@@ -29,8 +29,5 @@ exports.handler = ({ repo, page }) => {
             write();
             pages();
         })
-        .catch(error => {
-            console.warn(error);
-            write(`Unable to list users for ${repo}`)
-        })
+        .catch(() => write(`Unable to list users for ${repo}`))
 }
