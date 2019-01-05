@@ -52,8 +52,8 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
                 url: this.makeUri(endpoint),
                 headers: {
                     authorization: `token ${this._token}`,
-                    accept: 'application/json',
                     'Content-Type': 'application/json',
+                    accept: 'application/vnd.github.v3+json',
                     ...headers
                 }
             })
