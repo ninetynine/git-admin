@@ -44,7 +44,7 @@ github.prototype.makeUri = function (endpoint) {
     return this._base_uri + endpoint;
 }
 
-github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/' }) {
+github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/', headers = {} }) {
     return new Promise((resolve, reject) => {
         axios
             .request({
@@ -53,7 +53,8 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
                 headers: {
                     authorization: `token ${this._token}`,
                     accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    ...headers
                 }
             })
             .then(response => {

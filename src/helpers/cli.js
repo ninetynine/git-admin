@@ -22,11 +22,36 @@ exports.maxPage = function({ page, pagination }) {
         : `of ${page}`;
 }
 
-exports.write = function() {
-    Array
-        .from(arguments)
-        .forEach(arg => {
-            process.stdout.write(arg);
-            process.stdout.write('\n\r');
-        })
+exports.write = write = function() {
+    const output = Array.from(arguments);
+
+    if (!output.length || output[0] === null) {
+        output.push('');
+    }
+        
+    output.forEach(arg => {
+        process.stdout.write(arg);
+        process.stdout.write('\n\r');
+    })
+}
+
+exports.writeGroup = function() {
+    write(...arguments);
+    write();
+}
+
+exports.writeSwitch = function(expression, truthy, falsey) {
+    if (expression) {
+        if (Array.isArray(truthy)) {
+            return write(...truthy);
+        }
+
+        return write(truthy);
+    }
+
+    if (Array.isArray(falsey)) {
+        return write(...falsey);
+    }
+
+    return write(falsey);
 }
