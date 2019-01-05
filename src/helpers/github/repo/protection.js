@@ -1,5 +1,31 @@
 const { write, writeGroup, writeSwitch } = require('../../cli');
 
+// API is currently in preview
+
+exports.set = function ({ repo, branch, data }) {
+    const endpoint = `/repos/${repo}/branches/${branch}/protection`;
+
+    return this.request({
+        data, endpoint,
+        method: 'PUT',
+        headers: {
+            accept: 'application/vnd.github.luke-cage-preview+json'
+        }
+    })
+}
+
+exports.remove = function ({ repo, branch }) {
+    const endpoint = `/repos/${repo}/branches/${branch}/protection`;
+
+    return this.request({
+        endpoint,
+        method: 'DELETE',
+        headers: {
+            accept: 'application/vnd.github.luke-cage-preview+json'
+        }
+    })
+}
+
 exports.make = function (argv) {
     const data = {};
 

@@ -2,9 +2,9 @@ const confirm = require('prompt-confirm');
 
 const github = require('../../../helpers/github');
 const { force, write } = require('../../../helpers/cli');
-const { make, read } = require('../../../helpers/github/repo/protect');
+const { make, read } = require('../../../helpers/github/repo/protection');
 
-exports.command = 'set <repo> <branch>';
+exports.command = 'set <repo> [branch]';
 exports.desc = 'Set a remote repository\s branch protection';
 
 exports.builder = {
@@ -56,27 +56,58 @@ exports.builder = {
     enforce_admins: {
         alias: ['enforce-admins', 'ea'],
         type: 'boolean'
+    },
+    branches: {
+        alias: ['b'],
+        type: 'array'
     }
 }
 
-exports.handler = ({ repo, branch, force, ...argv }) => {
+exports.handler = ({ repo, branch, branches, force, ...argv }) => {
     const data = make(argv);
 
     read(data);
     write();
 
+    if (!branch && !branches) {
+        return write(
+            'At least one branch is required',
+            'Use `--branches` or specify a singluar branch after the repository'
+        );
+    }
+
     const action = () => {
-        github.repo
-            .protect({ repo, branch, data })
-            .then(() => write(`Permissions updated`))
-            .catch(error => console.warn(error));
+        if (branches) {
+            branches.forEach(branch => (
+                github.repo.protection
+                    .set({ repo, branch, data })
+                    .then(() => write(`Permissions set for ${branch}`))
+                    .catch(() => write(`Unable to set permissions for ${branch}`))
+            ))
+
+            return;
+        }
+        
+        github.repo.protection
+            .set({ repo, branch, data })
+            .then(() => write('Permissions set'))
+            .catch(() => write('Unable to set permissions'))
     }
 
     if (force) {
         return action();
     }
+
+    let prompt = new confirm(`Are you sure you want to set permissions for ${branch} on ${repo}?`);
+
+    if (branches) {
+        write(`Branches to be updated for ${repo}:`)
+        branches.forEach(branch => write(` - ${branch}`));
+
+        prompt = new confirm('Are you sure?');
+    }
     
-    (new confirm(`Are you sure you want to update permissions for ${branch} on ${repo}?`))
+    prompt
         .ask(answer => {
             if (answer) {
                 action();

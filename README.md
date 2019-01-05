@@ -38,8 +38,13 @@
         * [Inactive](#list-inactive)
       * [Add](#add)
       * [Remove](#remove)
+    * ⚠️ [Branch Protection](#branch-protection)
+      * [Set](#set)
+      * [Remove](#remove)
   * [Modules](#modules)
       * [Basic Command](#basic-command)
+* [FAQ](#faq)
+  * [Option Types](#option-types)
 
 ## Installation
 
@@ -284,6 +289,80 @@ If you are an organization repository admin you can also do this for organizatio
 
 <hr />
 
+#### Branch Protection
+
+⚠️ [Branch protection API][branch-protection] is current in preview mode (pre-release). So the following commands should be considered unstable.
+
+When changing repository settings a confirmation prompt will appear before taking any action. Although not recommended the prompt can be skipped by adding `--force` (or `-f`, `--yes`, or `-y`).
+
+##### Set
+
+To set branch protection for a branch simply run:
+
+```
+# An example of setting protection on a branch
+git-admin repo protection set user/repository master
+```
+
+If you want to set protection for multiple branches simply run:
+
+```
+# An example of setting branch protection on multiple branch
+git-admin repo protection set user/repository --branches master staging production
+```
+
+###### Options
+
+All options are optional.
+
+* `--strict-status-checks`, `--strict`, `--srsc`, `--ssc`
+  * <small>Boolean</small>
+* `--status-checks`, `--contexts`, `--rsc`, `--sc`
+  * <small>Array</small>
+* `--dismissal-restrict-users`, `--dru`
+  * <small>Array</small>
+* `--dismissal-restrict-teams`, `--drt`
+  * <small>Array</small>
+* `--code-owner-review`, `--owner-review`, `--code-owner`, `--rcor`, `--or`, `--co`
+  * <small>Boolean</small>
+* `--approving-review-count`, `--review-count`, `--arc`, `--rc`
+  * <small>Number</small>
+* `--restrict-users`, `--ru`
+  * <small>Array</small>
+* `--restrict-teams`, `--ru`
+  * <small>Array</small>
+* `--enforce-admins`, `--ea`
+  * <small>Boolean</small>
+* `--branches`, `-b`
+  * <small>Array</small>
+
+<hr />
+
+##### Remove
+
+To remove branch protection for a branch simply run:
+
+```
+# An example of removing branch protection on a branch
+git-admin repo protection set user/repository master
+```
+
+If you want to remove protection for multiple branches simply run:
+
+```
+# An example of removing branch protection on multiple branches
+git-admin repo protection set user/repository --branches master staging production
+```
+
+###### Options
+
+All options are optional.
+
+* `--branches`, `-b`
+  * <small>Array</small>
+
+<hr />
+
 ### Modules
 
 Modules allow `git-admin` to be extended easily. `git-admin` looks for a directory in your home directory:
@@ -312,6 +391,20 @@ exports.desc = 'Example module command';
 exports.handler = () => console.warn('hello, world');
 ```
 
+<hr />
+
+## FAQ
+
+### Option Types
+
+When describing an option for a command, under the aliases, there is a type. These reference a [yargs option type][yargs-option].
+
+* [Array][yargs-array]
+* [Boolean][yargs-boolean]
+* [Count][yargs-count]
+* [Number][yargs-number]
+* [String][yargs-string]
+
 [npm]: https://npmjs.com
 [npm-main]: https://docs.npmjs.com/files/package.json#main
 [yarn]: https://yarnpkg.com
@@ -319,3 +412,10 @@ exports.handler = () => console.warn('hello, world');
 [pt-info]: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
 [cm]: https://github.com/yargs/yargs/blob/master/docs/advanced.md#providing-a-command-module
 [dayjs]: https://github.com/iamkun/dayjs/blob/master/docs/en/API-reference.md#constructor-dayjsexisting-string--number--date--dayjs
+[branch-protection]: https://developer.github.com/v3/repos/branches/#get-branch-protection
+[yargs-option]: https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt
+[yargs-array]: https://github.com/yargs/yargs/blob/master/docs/api.md#array
+[yargs-boolean]: https://github.com/yargs/yargs/blob/master/docs/api.md#boolean
+[yargs-count]: https://github.com/yargs/yargs/blob/master/docs/api.md#count
+[yargs-number]: https://github.com/yargs/yargs/blob/master/docs/api.md#number
+[yargs-string]: https://github.com/yargs/yargs/blob/master/docs/api.md#string

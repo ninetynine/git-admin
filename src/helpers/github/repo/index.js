@@ -2,6 +2,7 @@ const date = require('dayjs');
 const repo = {};
 
 repo.user = require('./user');
+repo.protection = require('./protection');
 
 repo.list = function ({ user, organization, visibility, affiliation, type, sort, direction, page }) {
     let endpoint = '/user/repos';
@@ -140,20 +141,6 @@ repo.commits = function ({ repo, sha, path, author, since, until, page }) {
 
     return this.request({
         endpoint
-    })
-}
-
-repo.protect = function ({ repo, branch, data }) {
-    const endpoint = `/repos/${repo}/branches/${branch}/protection`;
-
-    return this.request({
-        data, endpoint,
-        method: 'PUT',
-        headers: {
-
-            // API is currently in preview
-            accept: 'application/vnd.github.luke-cage-preview+json'
-        }
     })
 }
 
