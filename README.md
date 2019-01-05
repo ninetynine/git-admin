@@ -40,7 +40,7 @@
       * [Remove](#remove)
     * ⚠️ [Branch Protection](#branch-protection)
       * [Set](#set)
-      * [Remove](#remove)
+      * [Remove](#remove-1)
   * [Modules](#modules)
       * [Basic Command](#basic-command)
 * [FAQ](#faq)
