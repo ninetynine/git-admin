@@ -2,7 +2,6 @@ const date = require('dayjs');
 const repo = {};
 
 repo.user = require('./user');
-repo.protection = require('./protection');
 
 repo.list = function ({ user, organization, visibility, affiliation, type, sort, direction, page }) {
     let endpoint = '/user/repos';

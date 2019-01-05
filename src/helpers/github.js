@@ -68,9 +68,10 @@ github.prototype.request = function ({ method = 'get', data = {}, endpoint = '/'
 }
 
 github.prototype.repo = require('./github/repo');
+github.prototype.branch = require('./github/branch');
 
 const instance = new github;
-const bindings = [ github.prototype.repo ];
+const bindings = [ github.prototype.repo, github.prototype.branch ];
 
 const loop = obj => (
     Object.entries(obj).forEach(([key, fn]) => {

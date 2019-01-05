@@ -38,6 +38,7 @@
         * [Inactive](#list-inactive)
       * [Add](#add)
       * [Remove](#remove)
+  * [Branches](#branches)
     * ⚠️ [Branch Protection](#branch-protection)
       * [Set](#set)
       * [Remove](#remove-1)
@@ -82,8 +83,6 @@ git-admin config token <personal-access-token>
 ## Usage
 
 ### Repositories
-
-The majority of the following commands require `repo` access unless specificed.
 
 When editing or deleting a repository a confirmation prompt will appear before taking any action. Although not recommended the prompt can be skipped by adding `--force` (or `-f`, `--yes`, or `-y`).
 
@@ -289,6 +288,8 @@ If you are an organization repository admin you can also do this for organizatio
 
 <hr />
 
+### Branches
+
 #### Branch Protection
 
 ⚠️ [Branch protection API][branch-protection] is current in preview mode (pre-release). So the following commands should be considered unstable.
@@ -301,14 +302,14 @@ To set branch protection for a branch simply run:
 
 ```
 # An example of setting protection on a branch
-git-admin repo protection set user/repository master
+git-admin branch protection set user/repository master
 ```
 
 If you want to set protection for multiple branches simply run:
 
 ```
 # An example of setting branch protection on multiple branch
-git-admin repo protection set user/repository --branches master staging production
+git-admin branch protection set user/repository --branches master staging production
 ```
 
 ###### Options
@@ -344,14 +345,14 @@ To remove branch protection for a branch simply run:
 
 ```
 # An example of removing branch protection on a branch
-git-admin repo protection set user/repository master
+git-admin branch protection set user/repository master
 ```
 
 If you want to remove protection for multiple branches simply run:
 
 ```
 # An example of removing branch protection on multiple branches
-git-admin repo protection set user/repository --branches master staging production
+git-admin branch protection set user/repository --branches master staging production
 ```
 
 ###### Options
