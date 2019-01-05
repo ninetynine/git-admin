@@ -1,5 +1,5 @@
 const github = require('../../../helpers/github');
-const { page, maxPage, write } = require('../../../helpers/cli');
+const { page, maxPage, write, writeSwitch } = require('../../../helpers/cli');
 
 exports.command = 'list <repo>';
 exports.describe = 'List users for a repository';
@@ -18,16 +18,19 @@ exports.handler = ({ repo, page }) => {
             const pages = () => write(`Page ${page} ${max_page}`);
 
             pages();
-            write('');
+            write();
 
-            if (!data.length) {
-                write(`No users found ${repo}`);
-            } else {
-                data.forEach(user => write(user.login));
-            }
+            writeSwitch(
+                !data.length,
+                `No users found ${repo}`,
+                data.map(user => `- ${user.login}`)
+            );
 
-            write('');
+            write();
             pages();
         })
-        .catch(() => write(`Unable to list users for ${repo}`))
+        .catch(error => {
+            console.warn(error);
+            write(`Unable to list users for ${repo}`)
+        })
 }

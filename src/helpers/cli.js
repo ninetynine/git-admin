@@ -28,11 +28,14 @@ exports.write = write = function() {
     if (!output.length || output[0] === null) {
         output.push('');
     }
-        
-    output.forEach(arg => {
-        process.stdout.write(arg);
-        process.stdout.write('\n\r');
-    })
+
+    output
+        .flat()
+        .filter(e => e !== null && e !== undefined)
+        .forEach(arg => {
+            process.stdout.write(arg);
+            process.stdout.write('\n\r');
+        })
 }
 
 exports.writeGroup = function() {

@@ -166,10 +166,12 @@ exports.read = function (data) {
         write('- Status checks will not be required');
     } else {
         const { strict, contexts } = data.required_status_checks;
-        write(`- Status checks will ${!strict ? 'not ' : ''}be strict`);
 
-        write(`- ${contexts.length} status check(s) will be required`);
-        write(...contexts.map(context => `  - ${context}`));
+        write(
+            `- Status checks will ${!strict ? 'not ' : ''}be strict`,
+            `- ${contexts.length} status check(s) will be required`,
+            contexts.map(context => `  - ${context}`)
+        )
     }
 
     write(`- Admins will be ${!data.enforce_admins ? 'not ' : ''}required to follow the restrictions`);
@@ -186,16 +188,20 @@ exports.read = function (data) {
             const { users, teams } = dismissal_restrictions;
 
             if (users) {
-                write(`- ${users.length} user(s) will be able to dismiss pull request reviews`);
-                write(...users.map(user => `  - ${user}`));
+                write(
+                    `- ${users.length} user(s) will be able to dismiss pull request reviews`,
+                    users.map(user => `  - ${user}`)
+                );
             }
 
             if (teams) {
-                write(`- ${teams.length} team(s) will be able to dismiss pull request reviews`);
-                write(...teams.map(team => `  - ${team}`));
+                write(
+                    `- ${teams.length} team(s) will be able to dismiss pull request reviews`,
+                    teams.map(team => `  - ${team}`)
+                );
             }
         } else {
-            write(`- No users or teams will be able to dismiss pull request reviews`);
+            write('- No users or teams will be able to dismiss pull request reviews');
         }
 
         write(`- Stale reviews will ${!dismiss_stale_reviews ? 'not ' : ''}be dismissed on new commits`);
@@ -214,13 +220,17 @@ exports.read = function (data) {
         const { users, teams } = data.restrictions;
 
         if (users) {
-            write(`- Only ${users.length} user(s) will be able to push to this branch`);
-            write(...users.map(user => `  - ${user}`));
+            write(
+                `- Only ${users.length} user(s) will be able to push to this branch`,
+                users.map(user => `  - ${user}`)
+            );
         }
 
         if (teams) {
-            write(`- Only ${teams.length} team(s) will be able to push to this branch`);
-            write(...teams.map(team => `  - ${team}`));
+            write(
+                `- Only ${teams.length} team(s) will be able to push to this branch`,
+                teams.map(team => `  - ${team}`)
+            );
         }
     }
 }

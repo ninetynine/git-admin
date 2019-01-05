@@ -1,5 +1,5 @@
 const github = require('../../helpers/github');
-const { page, maxPage, write } = require('../../helpers/cli');
+const { page, maxPage, write, writeSwitch } = require('../../helpers/cli');
 
 exports.command = 'list';
 exports.describe = 'List remote repositories';
@@ -55,15 +55,15 @@ exports.handler = argv => {
             const pages = () => write(`Page ${page} ${max_page}`);
 
             pages();
-            write('');
+            write();
 
-            if (!data.length) {
-                write(`No repositories found ${not_self}`);
-            } else {
-                data.forEach(repo => write(repo.full_name));
-            }
+            writeSwitch(
+                !data.length,
+                `No repositories found ${not_self}`,
+                data.map(repo => `- ${repo.full_name}`)
+            );
 
-            write('');
+            write();
             pages();
         })
         .catch(error => write(`Unable to list repositories ${not_self}`, JSON.stringify(error)))

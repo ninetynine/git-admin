@@ -107,7 +107,7 @@ exports.handler = ({ repo, sha, until, prune }) => {
             	return write(`No inactive users found for ${repo} from ${until.format('MM-DD-YYYY')}`);
             }
             
-            write('');
+            write();
 
             if (!prune) {
             	return write(...inactive_users);;

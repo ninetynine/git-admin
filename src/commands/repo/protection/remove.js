@@ -47,8 +47,10 @@ exports.handler = ({ repo, branch, branches, force }) => {
     let prompt = new confirm(`Are you sure you want to remove permissions for ${branch} on ${repo}?`);
 
     if (branches) {
-        write(`Branches to be updated for ${repo}:`)
-        branches.forEach(branch => write(` - ${branch}`));
+        write(
+            `Branches to be updated for ${repo}:`,
+            branches.map(branch => ` - ${branch}`)
+        );
 
         prompt = new confirm('Are you sure?');
     }
