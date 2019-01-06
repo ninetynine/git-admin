@@ -39,6 +39,10 @@
       * [Add](#add)
       * [Remove](#remove)
   * [Branches](#branches)
+    * [List](#list-2)
+    * [Create](#create-1)
+    * [Rename](#rename)
+    * [Delete](#delete-1)
     * ⚠️ [Branch Protection](#branch-protection)
       * [Set](#set)
       * [Remove](#remove-1)
@@ -289,6 +293,82 @@ If you are an organization repository admin you can also do this for organizatio
 <hr />
 
 ### Branches
+
+When renaming or deleting a branch a confirmation prompt will appear before taking any action. Although not recommended the prompt can be skipped by adding `--force` (or `-f`, `--yes`, or `-y`).
+
+#### List
+
+To list branches for a repository simply run:
+
+```
+# An example of listing branches for a repository
+git-admin branch list user/repository
+```
+
+##### Options
+
+All options are optional.
+
+* `--page`, `-p`
+  * Number (default `1`)
+
+#### Create
+
+To create a branch for a repository simply run:
+
+```
+# An example of creating a branch for a repository
+git-admin branch create user/repository new-branch
+```
+
+To create a branch based off another branch simply run:
+
+```
+# An example of creating a branch based off a different branch for a repository
+git-admin branch create user/repository production --base-branch staging
+```
+
+##### Options
+
+All options are optional.
+
+* `--base-branch`, `-b`
+  * String (default `master`)
+
+<hr />
+
+#### Rename
+
+To rename a branch for a repository simply run:
+
+```
+# An example of renaming a branch for a repository
+git-admin branch rename user/repository original renamed
+```
+
+<small>⚠️ Remember that this is remotely renaming branches, not locally.</small>
+
+<hr />
+
+#### Delete
+
+To delete a branch for a repository simply run:
+
+```
+# An example of deleting a branch for a repository
+git-admin branch delete user/repository old-branch
+```
+
+<small>⚠️ Remember that this is remotely deleting branches, not locally.</small>
+
+##### Options
+
+All options are optional.
+
+* `--branches`, `-b`
+  * Array
+
+<hr />
 
 #### Branch Protection
 
