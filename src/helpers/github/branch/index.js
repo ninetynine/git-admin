@@ -20,6 +20,26 @@ exports.create = async function ({ repo, new_branch, base_branch }) {
 	})
 }
 
+exports.rename = async function ({ repo, branch: base_branch, new_branch }) {
+	await this.branch.create({
+		repo, new_branch, base_branch
+	})
+
+	await this.branch.refs.delete({
+		repo, ref: `heads/${base_branch||'master'}`
+	})
+
+	return new Promise(resolve => (
+		resolve()
+	));
+}
+
+exports.delete = function ({ repo, branch }) {
+	return this.branch.refs.delete({
+		repo, ref: `heads/${branch}`
+	})
+}
+
 exports.list = function ({ repo, page }) {
 	let endpoint = `/repos/${repo}/branches`;
 

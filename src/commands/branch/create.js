@@ -1,5 +1,5 @@
 const github = require('../../helpers/github');
-const { maxPage, write, writeSwitch } = require('../../helpers/cli');
+const { write } = require('../../helpers/cli');
 
 exports.command = 'create <repo> <new_branch>';
 exports.describe = 'Create a branch for a repository';
