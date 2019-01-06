@@ -1,9 +1,7 @@
-const date = require('dayjs');
-const repo = {};
+exports.user = require('./user');
+exports.commits = require('./commits');
 
-repo.user = require('./user');
-
-repo.list = function ({ user, organization, visibility, affiliation, type, sort, direction, page }) {
+exports.list = function ({ user, organization, visibility, affiliation, type, sort, direction, page }) {
     let endpoint = '/user/repos';
 
     const query = [];
@@ -48,7 +46,7 @@ repo.list = function ({ user, organization, visibility, affiliation, type, sort,
     })
 }
 
-repo.create = function ({ repo: name, private, org }) {
+exports.create = function ({ repo: name, private, org }) {
     let endpoint = `/user/repos`;
 
     const data = { name, private };
@@ -63,7 +61,7 @@ repo.create = function ({ repo: name, private, org }) {
     })
 }
 
-repo.edit = function ({ repo, name, description, homepage, private, 'default-branch': default_branch }) {
+exports.edit = function ({ repo, name, description, homepage, private, 'default-branch': default_branch }) {
     const endpoint = `/repos/${repo}`;
     const data = { name: repo };
 
@@ -95,7 +93,7 @@ repo.edit = function ({ repo, name, description, homepage, private, 'default-bra
     })
 }
 
-repo.delete = function (repo) {
+exports.delete = function (repo) {
     const endpoint = `/repos/${repo}`;
 
     return this.request({
@@ -103,44 +101,3 @@ repo.delete = function (repo) {
         method: 'delete'
     })
 }
-
-repo.commits = function ({ repo, sha, path, author, since, until, page }) {
-    let endpoint = `/repos/${repo}/commits`;
-
-    const query = [];
-    const has_query = sha || path || author || since || until || page;
-
-    if (sha) {
-        query.push(`sha=${sha}`);
-    }
-
-    if (path) {
-        query.push(`path=${path}`);
-    }
-
-    if (author) {
-        query.push(`author=${author}`);
-    }
-
-    if (since) {
-        query.push(`since=${date(since).toISOString()}`);
-    }
-
-    if (until) {
-        query.push(`until=${date(until).toISOString()}`);
-    }
-
-    if (page) {
-        query.push(`page=${page}`);
-    }
-
-    if (has_query) {
-        endpoint += '?' + query.join('&');
-    }
-
-    return this.request({
-        endpoint
-    })
-}
-
-module.exports = repo;

@@ -15,7 +15,7 @@ exports.builder = {
         type: 'string'
     },
 	until: {
-		alias: ['from', 'u'],
+		alias: ['before', 'u'],
 		type: 'string',
 		default:
 			date()
@@ -78,7 +78,7 @@ exports.handler = ({ repo, sha, until, prune }) => {
             if (pagination && pagination.last) {
                 write(`Getting commits, scanning page ${++commits_page} of ${pagination.last.page}`);
 
-                const output = await github.repo.commits({ repo, sha, until, page: commits_page });
+                const output = await github.repo.commits.list({ repo, sha, until, page: commits_page });
                 output.data.forEach(commit => active_users.push(commit.author.login));
 
                 return getActiveUsers(output);
@@ -91,8 +91,8 @@ exports.handler = ({ repo, sha, until, prune }) => {
         return active_users;
     }
 
-    github.repo
-        .commits({ repo, sha, until })
+    github.repo.commits
+        .list({ repo, sha, until })
         .then(async data => {
             await warmup();
             
