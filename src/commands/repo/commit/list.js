@@ -18,11 +18,11 @@ exports.builder = {
         type: 'string'
     },
 	since: {
-		alias: ['after', 's'],
+		alias: ['after'],
 		type: 'string'
 	},
 	until: {
-		alias: ['before', 'u'],
+		alias: ['before'],
 		type: 'string'
 	},
 }

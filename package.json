@@ -1,6 +1,6 @@
 {
   "name": "git-admin",
-  "version": "4.0.0-beta",
+  "version": "4.0.1-beta",
   "description": "A package to help manage git repositories through the commandline",
   "main": "src/index.js",
   "bin": "src/index.js",

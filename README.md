@@ -38,8 +38,10 @@
         * [Inactive](#list-inactive)
       * [Add](#add)
       * [Remove](#remove)
+    * [Commits](#commits)
+      * [List](#list-2)
   * [Branches](#branches)
-    * [List](#list-2)
+    * [List](#list-3)
     * [Create](#create-1)
     * [Rename](#rename)
     * [Delete](#delete-1)
@@ -252,7 +254,7 @@ git-admin repo user inactive user/repository --prune
 
 * `--sha`, `--branch`, `-b`
   * <small>String (default `master`)</small>
-* `--until`, `--from`, `-u`
+* `--until`, `--before`, `-u`
   * <small>Date (default previous month from current date), expected format: `MM-DD-YYYY`. Check out [dayjs][dayjs] for more parsing information</small>
 * `--prune`, `-p`
   * <small>Boolean</small>
@@ -292,6 +294,34 @@ If you are an organization repository admin you can also do this for organizatio
 
 <hr />
 
+#### Commits
+
+##### List
+
+To list commits for a repository simply run:
+
+```
+# An example of listing commits for a repository
+git-admin repo commits list user/repository
+```
+
+###### Options
+
+* `--page`, `-p`
+  * <small>Number (default `1`)</small>
+* `--sha`, `--branch`, `-b`
+  * <small>String (default `master`)</small>
+* `--path`
+  * <small>String</small>
+* `--author`, `--user`, `-u`
+  * <small>String</small>
+* `--since`, `--after`
+  * <small>String (default current date), expected format: `MM-DD-YYYY`. Check out [dayjs][dayjs] for more parsing information</small>
+* `--after`, `--before`
+  * <small>String, expected format: `MM-DD-YYYY`. Check out [dayjs][dayjs] for more parsing information</small>
+
+<hr />
+
 ### Branches
 
 When renaming or deleting a branch a confirmation prompt will appear before taking any action. Although not recommended the prompt can be skipped by adding `--force` (or `-f`, `--yes`, or `-y`).
@@ -310,7 +340,7 @@ git-admin branch list user/repository
 All options are optional.
 
 * `--page`, `-p`
-  * Number (default `1`)
+  * <small>Number (default `1`)</small>
 
 #### Create
 
@@ -333,7 +363,7 @@ git-admin branch create user/repository production --base-branch staging
 All options are optional.
 
 * `--base-branch`, `-b`
-  * String (default `master`)
+  * <small>String (default `master`)</small>
 
 <hr />
 
@@ -366,7 +396,7 @@ git-admin branch delete user/repository old-branch
 All options are optional.
 
 * `--branches`, `-b`
-  * Array
+  * <small>Array</small>
 
 <hr />
 
