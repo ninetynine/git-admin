@@ -71,7 +71,7 @@ yarn global add git-admin
 
 ## Initial Setup
 
-Before you can do anything through `git-admin` you must create a personal acccess token. You can create one by [going here][pt], find out more [here][pt-info].
+Before you can do anything through `git-admin` you must create a personal access token. You can create one by [going here][pt], find out more [here][pt-info].
 
 As `git-admin`'s functionality is currently based around repositories you will need to tick the `repo` checkbox, and if you want to be able to delete repos then tick the `delete_repo` checkbox.
 
