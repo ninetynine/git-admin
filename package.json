@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/ninetynine/git-admin#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "conf": "^2.1.0",
     "dayjs": "^1.7.8",
     "parse-link-header": "^1.0.1",
